@@ -1,26 +1,69 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ---- Theme tokens ----
+   Navy base (the blue you liked) + colors pulled from the mascot:
+   orange (hair/bandana) as the main accent, shell green as a secondary. */
+@theme {
+  --color-bg: #0b1222;
+  --color-bg-raised: #111a2e;
+  --color-ink: #e6ebf5;
+  --color-muted: #8f9bb3;
+  --color-faint: #5d6880;
+  --color-accent: #ff8a3d;
+  --color-accent-soft: rgb(255 138 61 / 0.12);
+  --color-shell: #4cc26a;
+  --color-shell-soft: rgb(76 194 106 / 0.12);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
+  background: var(--color-bg);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-muted);
+  font-family: var(--font-sans);
 }
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Mascot animations */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+@keyframes hop {
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-14px) scale(1.04, 0.96); }
+  60% { transform: translateY(0) scale(1.06, 0.94); }
+  100% { transform: translateY(0) scale(1); }
+}
+@keyframes bubble-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.96); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.animate-bob { animation: bob 2.4s ease-in-out infinite; }
+.animate-hop { animation: hop 0.45s ease-out; }
+.animate-bubble { animation: bubble-in 0.18s ease-out; }
+
+/* Fade-up when a section enters the viewport */
+.reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }

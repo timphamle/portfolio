@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# timphamle.com
 
-## Getting Started
+My personal portfolio: a single-page, scroll-through site covering my experience, projects, education and a bit about me, with an in-depth page for every project.
 
-First, run the development server:
+**Stack:** Next.js (App Router, static export) · TypeScript · Tailwind CSS · Cloudflare
+
+## Features
+
+- Two-column layout with a sticky sidebar and section nav that tracks scrolling
+- Cursor spotlight background and hover cards that dim their siblings
+- Soft click "pop" sound (Web Audio, no asset) with a remembered mute toggle
+- Pixel-art mascot (Spike) with idle, hover and click reactions and section-aware speech bubbles
+- Statically generated project deep-dive pages from a shared template
+- Respects `prefers-reduced-motion`, keyboard accessible, mobile responsive
+
+## Editing content
+
+All content lives in `src/content/`. No layout code changes needed:
+
+| File | What it holds |
+|---|---|
+| `profile.ts` | Name, tagline, About paragraphs (`**bold**` = highlighted), socials, resume path |
+| `experience.ts` | Jobs, newest first |
+| `projects.ts` | Featured projects + the deep-dive content for each `/projects/<slug>/` page |
+| `education.ts` | Education, coursework, skills, and "Beyond the Code" tiles |
+| `mascot.ts` | Spike's speech-bubble lines |
+
+Put your resume at `public/resume.pdf` and project screenshots at `public/images/projects/` (then set `image` on the project).
+
+## Develop
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Deploy (Cloudflare)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+`npm run build` writes the static site to `out/`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Workers (CLI):** `npm run deploy` (uses `wrangler.jsonc`, first run asks you to log in with `npx wrangler login`)
+- **Pages (Git integration):** connect this repo in the Cloudflare dashboard with build command `npm run build` and output directory `out`
 
-## Learn More
+## Project structure
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+src/
+  app/                 routes (home, /projects/[slug], 404)
+  content/             all editable content + types
+  components/
+    layout/            SiteShell, Sidebar, Section, HoverGroup, CardShell
+    cards/             ExperienceCard, ProjectCard, EducationCard, SkillGroups, BeyondTiles
+    project/           ProjectLayout + deep-dive building blocks
+    effects/           Spotlight, sound, scroll reveal, active-section tracking
+    mascot/            Mascot behavior + placeholder sprite
+    ui/                icons and small primitives (TechPill, MetricBadge, links)
+docs/PLAN.md           design plan
+```
