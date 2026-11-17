@@ -17,6 +17,13 @@ export const metadata: Metadata = {
     description: profile.tagline,
     url: profile.siteUrl,
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 627, alt: `${profile.name}, ${profile.role}` }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${profile.name} · ${profile.role}`,
+    description: profile.tagline,
+    images: ["/og.png"],
   },
 };
 
