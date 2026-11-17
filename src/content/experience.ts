@@ -3,16 +3,6 @@ import type { Experience } from "./types";
 // Newest first.
 export const experience: Experience[] = [
   {
-    company: "DraftKings",
-    role: "Incoming Software Engineering Intern",
-    start: "Jun 2027",
-    end: "Aug 2027",
-    location: "Boston, MA",
-    url: "https://www.draftkings.com",
-    bullets: ["TBD"],
-    tech: ["TBD"],
-  },
-  {
     company: "State Farm",
     role: "Software Engineering Intern",
     start: "May 2026",

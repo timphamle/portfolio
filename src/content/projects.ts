@@ -133,7 +133,7 @@ export const projects: Project[] = [
       { kind: "github", label: "GitHub", href: "https://github.com/timphamle/powerlifting-regression-analysis" },
     ],
     detail: {
-      role: "Co-author (with Sophie Xu)",
+      role: "Co-author",
       team: "2",
       tldr: [
         "Analyzed 1,154 records from 8 years of the IPF World University Powerlifting Cup.",
