@@ -8,7 +8,8 @@ import { Sidebar, type NavItem } from "@/components/layout/Sidebar";
 import { Section, HoverGroup } from "@/components/layout/Section";
 import { ExperienceCard } from "@/components/cards/ExperienceCard";
 import { ProjectCard } from "@/components/cards/ProjectCard";
-import { EducationCard, SkillGroups, BeyondTiles } from "@/components/cards/EducationCard";
+import { EducationCard, SkillGroups } from "@/components/cards/EducationCard";
+import { BeyondTiles } from "@/components/cards/BeyondTiles";
 import { RichText } from "@/components/ui/primitives";
 
 // Order here = order on the page and in the left nav.

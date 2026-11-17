@@ -22,7 +22,7 @@ All content lives in `src/content/`. No layout code changes needed:
 | `profile.ts` | Name, tagline, About paragraphs (`**bold**` = highlighted), socials, resume path |
 | `experience.ts` | Jobs, newest first |
 | `projects.ts` | Featured projects + the deep-dive content for each `/projects/<slug>/` page |
-| `education.ts` | Education, coursework, skills, and "Beyond the Code" tiles |
+| `education.ts` | Education, coursework, skills, and "Beyond the Code" tiles (add `image: "/images/beyond/<file>"` to make a tile flip to a photo) |
 | `mascot.ts` | The mascot's speech-bubble lines |
 
 Put your resume at `public/resume.pdf` and project screenshots at `public/images/projects/` (then set `image` on the project).

@@ -1,4 +1,4 @@
-import type { Education, SkillGroup, BeyondItem } from "@/content/types";
+import type { Education, SkillGroup } from "@/content/types";
 import { TechList } from "@/components/ui/primitives";
 
 export function EducationCard({ edu }: { edu: Education }) {
@@ -54,21 +54,5 @@ export function SkillGroups({ groups }: { groups: SkillGroup[] }) {
         </div>
       ))}
     </div>
-  );
-}
-
-export function BeyondTiles({ items }: { items: BeyondItem[] }) {
-  return (
-    <ul className="grid gap-3 sm:grid-cols-3">
-      {items.map((b) => (
-        <li key={b.title} className="rounded-lg border border-white/5 bg-bg-raised/50 p-4 transition hover:border-accent/30">
-          <div className="text-2xl" aria-hidden>
-            {b.icon}
-          </div>
-          <h3 className="mt-2 text-sm font-medium text-ink">{b.title}</h3>
-          <p className="mt-1 text-sm leading-snug">{b.blurb}</p>
-        </li>
-      ))}
-    </ul>
   );
 }

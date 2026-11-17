@@ -87,4 +87,10 @@ export interface BeyondItem {
   icon: string;
   title: string;
   blurb: string;
+  /** Optional photo for the back of the card (e.g. "/images/beyond/powerlifting.jpg"). Cards without one don't flip. */
+  image?: string;
+  /** Short description of the photo for screen readers. */
+  imageAlt?: string;
+  /** Which part of the photo stays visible when the card trims it (CSS object-position, e.g. "center 20%"). Defaults to center. */
+  imagePosition?: string;
 }
