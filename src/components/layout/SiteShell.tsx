@@ -26,7 +26,7 @@ export function Footer() {
         >
           GitHub
         </a>
-        . Layout inspired by Brittany Chiang.
+        .
       </p>
     </footer>
   );
