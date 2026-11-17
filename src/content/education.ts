@@ -43,30 +43,70 @@ export const skills: SkillGroup[] = [
   },
 ];
 
+// Connections between skills for the 3D skills graph. Every skill is already linked to
+// its own group; these add the cross-links (what you've actually used together).
+// Names must match the skills above exactly.
+export const skillLinks: [string, string][] = [
+  // Python data / ML stack
+  ["Python", "Pandas"],
+  ["Python", "scikit-learn"],
+  ["Python", "PyTorch"],
+  ["Python", "XGBoost"],
+  ["Python", "Streamlit"],
+  ["Python", "Sentence Transformers"],
+  ["Python", "LiteLLM"],
+  ["Python", "OpenAI API"],
+  ["SQL", "Pandas"],
+  ["R", "Shiny"],
+  // RAG (myGymBro)
+  ["Sentence Transformers", "LiteLLM"],
+  ["LiteLLM", "OpenAI API"],
+  ["Streamlit", "LiteLLM"],
+  // Java / backend (State Farm, Subscription API)
+  ["Java", "Spring Boot"],
+  ["Spring Boot", "REST APIs"],
+  ["Spring Boot", "Docker"],
+  ["Spring Boot", "AWS (ECS, Lambda, CloudWatch)"],
+  ["Go", "REST APIs"],
+  // JavaScript / web (YOLO Fund)
+  ["JavaScript", "React"],
+  ["JavaScript", "Node.js"],
+  ["JavaScript", "Express"],
+  ["JavaScript", "React Native"],
+  ["TypeScript", "React"],
+  ["TypeScript", "Node.js"],
+  ["HTML/CSS", "React"],
+  ["Express", "MongoDB"],
+  ["Express", "REST APIs"],
+  ["Node.js", "MongoDB"],
+  // Low level
+  ["C", "MIPS Assembly"],
+  // Cloud & delivery
+  ["Docker", "AWS (ECS, Lambda, CloudWatch)"],
+  ["Terraform", "AWS (ECS, Lambda, CloudWatch)"],
+  ["GitLab CI/CD", "Docker"],
+  ["GitLab CI/CD", "JFrog"],
+  ["GitLab CI/CD", "Snyk"],
+  ["GitLab CI/CD", "Git"],
+  ["Splunk", "AWS (ECS, Lambda, CloudWatch)"],
+  ["Java", "Snyk"],
+];
+
 // Keep this short: 2–4 tiles.
 export const beyond: BeyondItem[] = [
   {
     icon: "🏋️",
     title: "Powerlifting",
     blurb: "Member of Blue Devil Barbells. I like the gym so much I built an AI coach and ran a regression study on it.",
-    image: "/images/beyond/powerlifting.webp",
-    imageAlt: "Me with a medal at a USA Powerlifting meet",
-    imagePosition: "center 20%",
   },
   {
     icon: "🎾",
     title: "Racket Sports",
     blurb: "Any racket sport and I'm there: Tennis, Pickleball, and Ping-pong.",
-    image: "/images/beyond/pickleball.webp",
-    imageAlt: "Me and my doubles partner biting our medals on the first-place podium at a pickleball tournament",
-    imagePosition: "center 20%",
   },
   {
     icon: "🤝",
     title: "Community",
     blurb: "Treasurer of Lambda Phi Epsilon and a member of the Vietnamese Student Association.",
-    image: "/images/beyond/community.webp",
-    imageAlt: "Me with Lambda Phi Epsilon brothers in our chapter jackets",
-    imagePosition: "center 15%",
   },
 ];

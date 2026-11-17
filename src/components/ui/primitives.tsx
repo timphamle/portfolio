@@ -51,33 +51,6 @@ export function ExternalLink({ link, className = "" }: { link: ProjectLink; clas
   );
 }
 
-/** Primary / secondary pill buttons. */
-export function ButtonLink({
-  href,
-  children,
-  variant = "primary",
-  external = false,
-}: {
-  href: string;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary";
-  external?: boolean;
-}) {
-  const styles =
-    variant === "primary"
-      ? "border-accent/60 text-accent hover:bg-accent-soft"
-      : "border-white/10 text-ink hover:border-white/25 hover:bg-white/5";
-  return (
-    <a
-      href={href}
-      {...(external ? { target: "_blank", rel: "noreferrer noopener" } : {})}
-      className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition ${styles}`}
-    >
-      {children}
-    </a>
-  );
-}
-
 /** Renders **bold** segments in content strings as highlighted text. */
 export function RichText({ text }: { text: string }) {
   const parts = text.split(/(\*\*[^*]+\*\*)/g);

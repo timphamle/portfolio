@@ -1,8 +1,6 @@
 // Speech-bubble lines for the mascot. Edit freely.
-export const mascotName = "Allay";
-
 export const mascotLines = {
-  // Shown when you click the mascot, in a rotating order.
+  // The first one greets visitors on page load; the rest rotate in when the reader pauses.
   general: [
     "hi! i'm Tim's allay",
     "i fetch things. like projects →",

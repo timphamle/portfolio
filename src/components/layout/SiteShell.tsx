@@ -15,19 +15,8 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
 
 export function Footer() {
   return (
-    <footer className="max-w-md pb-16 text-sm text-faint sm:pb-0">
-      <p>
-        Built with Next.js, TypeScript and Tailwind CSS, deployed on Cloudflare. Source on{" "}
-        <a
-          href="https://github.com/timphamle/portfolio"
-          target="_blank"
-          rel="noreferrer noopener"
-          className="font-medium text-muted hover:text-accent"
-        >
-          GitHub
-        </a>
-        .
-      </p>
+    <footer className="pb-16 text-sm text-faint sm:pb-0">
+      <p>© {new Date().getFullYear()} timphamle.com</p>
     </footer>
   );
 }

@@ -4,7 +4,6 @@ import Link from "next/link";
 import type { Profile } from "@/content/types";
 import { useActiveSection } from "@/components/effects/ActiveSection";
 import { MuteToggle } from "@/components/effects/MuteToggle";
-import { Mascot } from "@/components/mascot/Mascot";
 import { GitHubIcon, LinkedInIcon, MailIcon, ArrowUpRight } from "@/components/ui/icons";
 
 export interface NavItem {
@@ -12,19 +11,20 @@ export interface NavItem {
   label: string;
 }
 
-/** Sticky left column: intro, section nav, resume, mascot, socials. */
+/** Sticky left column: intro, section nav, resume, socials. The data-allay markers guide the flying mascot. */
 export function Sidebar({ profile, nav }: { profile: Profile; nav: NavItem[] }) {
   return (
-    <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
-      <div>
-        <div className="flex items-center gap-8">
-          <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-            <Link href="/">{profile.name}</Link>
-          </h1>
-          <Mascot size={52} />
-        </div>
+    <header data-allay="sidebar" className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
+      <div data-allay="intro">
+        <h1 data-allay="name" className="w-max text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+          <Link href="/">{profile.name}</Link>
+        </h1>
         <h2 className="mt-3 text-lg font-medium tracking-tight text-ink sm:text-xl">{profile.role}</h2>
-        <p className="mt-4 max-w-xs leading-normal">{profile.tagline}</p>
+        <div data-allay="tagline" className="mt-4 max-w-xs space-y-2 leading-normal">
+          {profile.tagline.split("\n").map((line) => (
+            <p key={line}>{line}</p>
+          ))}
+        </div>
 
         {profile.resumePath && (
           <a
@@ -41,7 +41,7 @@ export function Sidebar({ profile, nav }: { profile: Profile; nav: NavItem[] }) 
         <SectionNav items={nav} />
       </div>
 
-      <div className="mt-10 lg:mt-0">
+      <div data-allay="socials" className="mt-10 lg:mt-0">
         <SocialLinks profile={profile} />
       </div>
     </header>
@@ -51,7 +51,7 @@ export function Sidebar({ profile, nav }: { profile: Profile; nav: NavItem[] }) 
 function SectionNav({ items }: { items: NavItem[] }) {
   const active = useActiveSection();
   return (
-    <nav className="hidden lg:block" aria-label="In-page jump links">
+    <nav data-allay="nav" className="hidden lg:block" aria-label="In-page jump links">
       <ul className="mt-14 w-max">
         {items.map((item) => {
           const isActive = active === item.id;

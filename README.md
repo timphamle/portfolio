@@ -9,7 +9,8 @@ My personal portfolio: a single-page, scroll-through site covering my experience
 - Two-column layout with a sticky sidebar and section nav that tracks scrolling
 - Cursor spotlight background and hover cards that dim their siblings
 - Soft click "pop" sound (Web Audio, no asset) with a remembered mute toggle
-- Pixel-art allay mascot with idle, hover and click reactions and section-aware speech bubbles
+- A pixel-art allay mascot that flies a fixed path in the left column as you scroll and comments on each section (path in `src/components/mascot/FlyingAllay.tsx`)
+- 3D interactive skills graph (drag to rotate, hover to see connections)
 - Statically generated project deep-dive pages from a shared template
 - Respects `prefers-reduced-motion`, keyboard accessible, mobile responsive
 
@@ -22,8 +23,8 @@ All content lives in `src/content/`. No layout code changes needed:
 | `profile.ts` | Name, tagline, About paragraphs (`**bold**` = highlighted), socials, resume path |
 | `experience.ts` | Jobs, newest first |
 | `projects.ts` | Featured projects + the deep-dive content for each `/projects/<slug>/` page |
-| `education.ts` | Education, coursework, skills, and "Beyond the Code" tiles (add `image: "/images/beyond/<file>"` to make a tile flip to a photo) |
-| `mascot.ts` | The mascot's speech-bubble lines |
+| `mascot.ts` | The allay's speech-bubble lines (greeting, per-section, idle) |
+| `education.ts` | Education, coursework, skills, `skillLinks` (connections in the 3D skills graph), and "Beyond the Code" tiles |
 
 Put your resume at `public/resume.pdf` and project screenshots at `public/images/projects/` (then set `image` on the project).
 
@@ -52,7 +53,8 @@ src/
     cards/             ExperienceCard, ProjectCard, EducationCard, SkillGroups, BeyondTiles
     project/           ProjectLayout + deep-dive building blocks
     effects/           Spotlight, sound, scroll reveal, active-section tracking
-    mascot/            Mascot behavior + placeholder sprite
+    mascot/            FlyingAllay (scroll-driven flight path)
+    skills/            SkillGraph (3D canvas graph)
     ui/                icons and small primitives (TechPill, MetricBadge, links)
 docs/PLAN.md           design plan
 ```

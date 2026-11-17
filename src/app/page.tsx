@@ -1,14 +1,16 @@
 import { profile } from "@/content/profile";
 import { experience } from "@/content/experience";
 import { projects } from "@/content/projects";
-import { education, skills, beyond } from "@/content/education";
+import { education, skills, skillLinks, beyond } from "@/content/education";
 import { ActiveSectionProvider } from "@/components/effects/ActiveSection";
 import { SiteShell, Footer } from "@/components/layout/SiteShell";
 import { Sidebar, type NavItem } from "@/components/layout/Sidebar";
 import { Section, HoverGroup } from "@/components/layout/Section";
 import { ExperienceCard } from "@/components/cards/ExperienceCard";
 import { ProjectCard } from "@/components/cards/ProjectCard";
-import { EducationCard, SkillGroups } from "@/components/cards/EducationCard";
+import { EducationCard } from "@/components/cards/EducationCard";
+import { SkillGraph } from "@/components/skills/SkillGraph";
+import { FlyingAllay } from "@/components/mascot/FlyingAllay";
 import { BeyondTiles } from "@/components/cards/BeyondTiles";
 import { RichText } from "@/components/ui/primitives";
 
@@ -24,6 +26,7 @@ const nav: NavItem[] = [
 export default function Home() {
   return (
     <ActiveSectionProvider ids={nav.map((n) => n.id)}>
+      <FlyingAllay />
       <SiteShell>
         <Sidebar profile={profile} nav={nav} />
 
@@ -57,8 +60,7 @@ export default function Home() {
           <Section id="education" title="Education">
             <EducationCard edu={education} />
             <div className="mt-10">
-              <h3 className="mb-4 text-sm font-bold uppercase tracking-widest text-ink">Skills</h3>
-              <SkillGroups groups={skills} />
+              <SkillGraph groups={skills} links={skillLinks} />
             </div>
           </Section>
 

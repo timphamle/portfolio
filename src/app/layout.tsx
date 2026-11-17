@@ -5,16 +5,18 @@ import { profile } from "@/content/profile";
 import { SpotlightBackground } from "@/components/effects/SpotlightBackground";
 import { SoundProvider } from "@/components/effects/SoundProvider";
 
+const description = profile.tagline.replace(/\s*\n\s*/g, " ");
+
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL(profile.siteUrl),
   title: { default: `${profile.name} · ${profile.role}`, template: `%s · ${profile.name}` },
-  description: profile.tagline,
+  description,
   openGraph: {
     title: `${profile.name} · ${profile.role}`,
-    description: profile.tagline,
+    description,
     url: profile.siteUrl,
     type: "website",
     images: [{ url: "/og.png", width: 1200, height: 627, alt: `${profile.name}, ${profile.role}` }],
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${profile.name} · ${profile.role}`,
-    description: profile.tagline,
+    description,
     images: ["/og.png"],
   },
 };
