@@ -17,9 +17,12 @@ export function Sidebar({ profile, nav }: { profile: Profile; nav: NavItem[] }) 
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
       <div>
-        <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">
-          <Link href="/">{profile.name}</Link>
-        </h1>
+        <div className="flex items-center gap-4">
+          <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">
+            <Link href="/">{profile.name}</Link>
+          </h1>
+          <Mascot size={52} />
+        </div>
         <h2 className="mt-3 text-lg font-medium tracking-tight text-ink sm:text-xl">{profile.role}</h2>
         <p className="mt-4 max-w-xs leading-normal">{profile.tagline}</p>
 
@@ -38,10 +41,7 @@ export function Sidebar({ profile, nav }: { profile: Profile; nav: NavItem[] }) 
         <SectionNav items={nav} />
       </div>
 
-      <div className="mt-10 flex items-end justify-between gap-6 lg:mt-0 lg:block">
-        <div className="order-2 lg:mb-6">
-          <Mascot size={64} />
-        </div>
+      <div className="mt-10 lg:mt-0">
         <SocialLinks profile={profile} />
       </div>
     </header>

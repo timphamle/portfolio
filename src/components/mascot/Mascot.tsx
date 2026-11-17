@@ -53,15 +53,19 @@ export function Mascot({ size = 72 }: { size?: number }) {
   };
 
   return (
-    <div className="relative inline-flex flex-col items-start">
-      <div aria-live="polite" className="pointer-events-none absolute bottom-full left-0 mb-2 w-max max-w-[220px]">
+    <div className="relative inline-flex flex-col items-center">
+      {/* Speech bubble floats just below the mascot, centered, above other content. */}
+      <div
+        aria-live="polite"
+        className="pointer-events-none absolute left-1/2 top-full z-30 mt-2 w-max max-w-[200px] -translate-x-1/2"
+      >
         {line && (
           <div
             key={line}
-            className="animate-bubble relative rounded-xl border border-white/10 bg-bg-raised px-3 py-2 text-xs leading-snug text-ink shadow-lg"
+            className="animate-bubble relative rounded-xl border border-white/10 bg-bg-raised px-3 py-2 text-xs font-normal leading-snug tracking-normal text-ink shadow-lg"
           >
+            <span className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 border-l border-t border-white/10 bg-bg-raised" />
             {line}
-            <span className="absolute -bottom-1.5 left-6 h-3 w-3 rotate-45 border-b border-r border-white/10 bg-bg-raised" />
           </div>
         )}
       </div>
