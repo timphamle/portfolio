@@ -1,5 +1,7 @@
 # Portfolio Website — Plan
 
+> **Note:** This is the original planning doc. A few things changed during the build: content lives in TypeScript data files instead of MDX, the mascot is a pixel-art allay that flies in the left column instead of a Bowser Jr.-style corner sprite, and the skills section is a 3D graph. See the [README](../README.md) for how the site works today.
+
 > **Goal:** A clean, single-page, recruiter-friendly SWE portfolio that goes deep on projects, with a small amount of personality (a mascot + a click "pop"). Built to land FAANG interviews, not to win design awards.
 
 ---

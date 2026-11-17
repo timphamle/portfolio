@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { mascotLines } from "@/content/mascot";
+import { activeUpdate, mascotLines } from "@/content/mascot";
 import { useActiveSection } from "@/components/effects/ActiveSection";
 import { AllaySprite } from "./AllaySprite";
 
@@ -9,10 +9,14 @@ import { AllaySprite } from "./AllaySprite";
  * The allay flies along a fixed path in the LEFT column as the page scrolls, always
  * facing right, as if it is watching the content and commenting on it.
  *
- * It lives on a layer *behind* the page content (z-index below SiteShell), so it can
- * pass behind text but never covers it. The path is a list of waypoints keyed to
- * scroll progress (0 = top of page, 1 = bottom). Each waypoint points at a zone of
- * the layout, so the route adapts to any screen size:
+ * On desktop it flies in front of the page and is clickable (hover = grow + glow, click =
+ * hop, sparkles and the next line); its route only uses empty space, so it never covers
+ * text. On phones it flies behind the page instead, since its route crosses text there.
+ * Lines come from src/content/mascot.ts (current update, general lines, section lines).
+ *
+ * The path is a list of waypoints keyed to scroll progress (0 = top of page,
+ * 1 = bottom). Each waypoint points at a zone of the layout, so the route adapts to
+ * any screen size:
  *
  *   name   beside your name (where the allay starts)
  *   lane   the empty strip in the sidebar between your intro/nav and the content
@@ -189,8 +193,34 @@ export function FlyingAllay() {
   const section = useActiveSection();
   const lastSection = useRef<string | null>(null);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
-  const generalIndex = useRef(0);
+  const chatIndex = useRef(0);
   const showing = useRef(false);
+  const burst = useRef(false);
+  const [hop, setHop] = useState(false);
+
+  /** Lines for greeting, clicks and idle chatter: the current update (if any), then the general lines. */
+  const chatLines = () => {
+    const update = activeUpdate();
+    return update ? [update, ...mascotLines.general] : mascotLines.general;
+  };
+  const sayNext = () => {
+    const lines = chatLines();
+    const text = lines[chatIndex.current % lines.length];
+    chatIndex.current += 1;
+    say(text, text === activeUpdate() ? 5000 : 3500);
+  };
+  // Effects below call the latest sayNext through this ref.
+  const sayNextRef = useRef(sayNext);
+  sayNextRef.current = sayNext;
+  const doHop = () => {
+    setHop(false);
+    requestAnimationFrame(() => setHop(true));
+  };
+  const onClick = () => {
+    sayNext();
+    doHop();
+    burst.current = true;
+  };
 
   const say = (text: string, ms = 3200) => {
     showing.current = true;
@@ -204,10 +234,7 @@ export function FlyingAllay() {
 
   // Greeting shortly after the page loads.
   useEffect(() => {
-    const t = setTimeout(() => {
-      say(mascotLines.general[0], 3500);
-      generalIndex.current = 1;
-    }, 1200);
+    const t = setTimeout(() => sayNextRef.current(), 1200);
     return () => {
       clearTimeout(t);
       clearTimeout(hideTimer.current);
@@ -236,9 +263,7 @@ export function FlyingAllay() {
     window.addEventListener("scroll", onScroll, { passive: true });
     const timer = setInterval(() => {
       if (showing.current || Date.now() - lastScroll < IDLE_CHAT_MS) return;
-      const lines = mascotLines.general;
-      say(lines[generalIndex.current % lines.length], 3500);
-      generalIndex.current += 1;
+      sayNextRef.current();
       lastScroll = Date.now();
     }, 1000);
     return () => {
@@ -319,8 +344,22 @@ export function FlyingAllay() {
       const bubble = bubbleRef.current;
       if (bubble && bubble.firstElementChild) side = placeBubble(bubble, { x: pos.x, y: pos.y + bob }, size, side, column ? column.right + 8 : window.innerWidth);
 
-      // Sparkle trail while moving.
+      // Sparkle trail while moving, plus a burst when clicked.
       if (!reduced) {
+        if (burst.current) {
+          burst.current = false;
+          for (let k = 0; k < 10; k++) {
+            const s = sparks[nextSpark];
+            nextSpark = (nextSpark + 1) % SPARKS;
+            const a = (k / 10) * Math.PI * 2;
+            s.x = pos.x + Math.cos(a) * size * 0.45;
+            s.y = pos.y + bob + Math.sin(a) * size * 0.45;
+            s.dx = Math.cos(a) * 26;
+            s.max = 0.7 + Math.random() * 0.3;
+            s.life = s.max;
+            s.s = 3 + Math.round(Math.random() * 3);
+          }
+        }
         sparkTimer += dt;
         if (speed > 60 && sparkTimer > 0.045) {
           sparkTimer = 0;
@@ -358,18 +397,33 @@ export function FlyingAllay() {
 
   return (
     <>
-      <div aria-hidden className="pointer-events-none fixed inset-0 z-[1] overflow-hidden">
+      {/* Behind the page on phones (its route crosses text there); in front and clickable on
+          desktop, where it only flies through empty space in the left column. */}
+      <div className="pointer-events-none fixed inset-0 z-[1] overflow-hidden lg:z-20">
         {Array.from({ length: SPARKS }, (_, i) => (
           <span
             key={i}
+            aria-hidden
             ref={(el) => {
               sparkRefs.current[i] = el;
             }}
             className="absolute left-0 top-0 bg-[#a8e8ff] opacity-0 shadow-[0_0_6px_rgba(92,194,242,0.9)]"
           />
         ))}
-        <div ref={birdRef} className="absolute left-0 top-0 opacity-0 will-change-transform" style={{ width: SIZE_DESKTOP, height: SIZE_DESKTOP }}>
-          <AllaySprite size={SIZE_DESKTOP} className="h-full w-full drop-shadow-[0_0_10px_rgba(92,194,242,0.55)]" />
+        <div ref={birdRef} className="absolute left-0 top-0 opacity-0 will-change-transform lg:pointer-events-auto" style={{ width: SIZE_DESKTOP, height: SIZE_DESKTOP }}>
+          <button
+            type="button"
+            onClick={onClick}
+            onMouseEnter={doHop}
+            onAnimationEnd={() => setHop(false)}
+            aria-label="Allay, Tim's mascot. Click for a message."
+            className={`group block h-full w-full cursor-pointer rounded-lg ${hop ? "animate-hop" : ""}`}
+          >
+            <AllaySprite
+              size={SIZE_DESKTOP}
+              className="h-full w-full drop-shadow-[0_0_10px_rgba(92,194,242,0.55)] transition duration-200 group-hover:scale-110 group-hover:drop-shadow-[0_0_18px_rgba(140,252,252,0.95)] group-focus-visible:scale-110"
+            />
+          </button>
         </div>
       </div>
       {/* The bubble sits above the page (the allay itself stays behind) so it can be read. */}
