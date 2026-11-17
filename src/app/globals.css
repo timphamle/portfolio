@@ -1,16 +1,16 @@
 @import "tailwindcss";
 
 /* ---- Theme tokens ----
-   Navy base (the blue you liked) + colors pulled from the mascot:
-   orange (hair/bandana) as the main accent, shell green as a secondary. */
+   Navy base + the allay mascot's glowing sky blue as the accent,
+   with green kept for numbers/metrics. */
 @theme {
   --color-bg: #0b1222;
   --color-bg-raised: #111a2e;
   --color-ink: #e6ebf5;
   --color-muted: #8f9bb3;
   --color-faint: #5d6880;
-  --color-accent: #ff8a3d;
-  --color-accent-soft: rgb(255 138 61 / 0.12);
+  --color-accent: #5cc2f2;
+  --color-accent-soft: rgb(92 194 242 / 0.12);
   --color-shell: #4cc26a;
   --color-shell-soft: rgb(76 194 106 / 0.12);
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;

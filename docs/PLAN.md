@@ -154,7 +154,7 @@ Each project is one `.mdx` file. Every page follows the same outline, so recruit
 
 ## 7. Mascot: inspired by Bowser Jr.
 
-**Legal note:** Bowser Jr. is Nintendo's trademarked character, and Nintendo actively enforces its IP. Using official art or sprites (or a close copy) on a public site, especially one tied to your professional brand, is a real risk. **The plan is an *original* character with the same energy:** a small, cocky, spiky-shelled dino/turtle kid with a bandana bib, made as our own pixel art. It reads as "Bowser Jr. vibes" without being him.
+**Legal note:** Bowser Jr. is Nintendo's trademarked character, and Nintendo actively enforces its IP. Using official art or sprites (or a close copy) on a public site, especially one tied to your professional brand, is a real risk. **Update:** the mascot is now a blue allay (Minecraft-inspired), drawn as our own pixel art rather than using game textures.
 
 **Behavior (kept subtle):**
 - Lives bottom-left of the sidebar (or bottom-right on mobile), about 64–96px.

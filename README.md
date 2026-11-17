@@ -9,7 +9,7 @@ My personal portfolio: a single-page, scroll-through site covering my experience
 - Two-column layout with a sticky sidebar and section nav that tracks scrolling
 - Cursor spotlight background and hover cards that dim their siblings
 - Soft click "pop" sound (Web Audio, no asset) with a remembered mute toggle
-- Pixel-art mascot (Spike) with idle, hover and click reactions and section-aware speech bubbles
+- Pixel-art allay mascot with idle, hover and click reactions and section-aware speech bubbles
 - Statically generated project deep-dive pages from a shared template
 - Respects `prefers-reduced-motion`, keyboard accessible, mobile responsive
 
@@ -23,7 +23,7 @@ All content lives in `src/content/`. No layout code changes needed:
 | `experience.ts` | Jobs, newest first |
 | `projects.ts` | Featured projects + the deep-dive content for each `/projects/<slug>/` page |
 | `education.ts` | Education, coursework, skills, and "Beyond the Code" tiles |
-| `mascot.ts` | Spike's speech-bubble lines |
+| `mascot.ts` | The mascot's speech-bubble lines |
 
 Put your resume at `public/resume.pdf` and project screenshots at `public/images/projects/` (then set `image` on the project).
 
