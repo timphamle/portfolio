@@ -51,9 +51,9 @@ export const beyond: BeyondItem[] = [
     blurb: "Member of Blue Devil Barbells. I like the gym so much I built an AI coach and ran a regression study on it.",
   },
   {
-    icon: "🏎️",
-    title: "Mario Kart",
-    blurb: "Bowser Jr. main. Questionable lines, unwavering confidence.",
+    icon: "🎾",
+    title: "Racket Sports",
+    blurb: "Any racket sport and I'm there: Tennis, Pickleball, and Ping-pong.",
   },
   {
     icon: "🤝",

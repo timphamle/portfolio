@@ -4,13 +4,13 @@ import type { Experience } from "./types";
 export const experience: Experience[] = [
   {
     company: "DraftKings",
-    role: "Software Engineering Intern",
-    start: "TODO",
-    end: "TODO",
-    location: "TODO",
+    role: "Incoming Software Engineering Intern",
+    start: "Jun 2027",
+    end: "Aug 2027",
+    location: "Boston, MA",
     url: "https://www.draftkings.com",
-    bullets: ["TODO: what you built, with a number for impact."],
-    tech: ["TODO"],
+    bullets: ["TBD"],
+    tech: ["TBD"],
   },
   {
     company: "State Farm",

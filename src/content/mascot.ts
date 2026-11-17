@@ -4,7 +4,7 @@ export const mascotName = "Allay";
 export const mascotLines = {
   // Shown when you click the mascot, in a rotating order.
   general: [
-    "hi! i'm Tim's allay 💙",
+    "hi! i'm Tim's allay",
     "i fetch things. like projects →",
     "PR'd today 💪",
     "ask Tim about RAG pipelines",
@@ -16,6 +16,6 @@ export const mascotLines = {
     experience: "54% faster APIs. not bad.",
     projects: "click a card for the deep dive →",
     education: "duke, double major. nerd.",
-    beyond: "yes, he plays bowser jr.",
+    beyond: "yes, he's a gym rat",
   } as Record<string, string>,
 };
