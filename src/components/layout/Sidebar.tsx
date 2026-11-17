@@ -17,7 +17,7 @@ export function Sidebar({ profile, nav }: { profile: Profile; nav: NavItem[] }) 
   return (
     <header className="lg:sticky lg:top-0 lg:flex lg:max-h-screen lg:w-[48%] lg:flex-col lg:justify-between lg:py-24">
       <div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-8">
           <h1 className="text-4xl font-bold tracking-tight text-ink sm:text-5xl">
             <Link href="/">{profile.name}</Link>
           </h1>
