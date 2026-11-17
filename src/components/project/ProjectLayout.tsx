@@ -38,15 +38,17 @@ export function ProjectLayout({ project, next }: { project: Project; next?: Proj
         <TechStackGrid stack={d.stack} />
       </Block>
 
-      <Block title="Hard parts & key decisions">
-        <div className="space-y-4">
-          {d.challenges.map((c) => (
-            <Callout key={c.title} title={c.title}>
-              {c.body}
-            </Callout>
-          ))}
-        </div>
-      </Block>
+      {d.challenges.length > 0 && (
+        <Block title="Hard parts & key decisions">
+          <div className="space-y-4">
+            {d.challenges.map((c) => (
+              <Callout key={c.title} title={c.title}>
+                {c.body}
+              </Callout>
+            ))}
+          </div>
+        </Block>
+      )}
 
       <Block title="Results">
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
@@ -56,9 +58,11 @@ export function ProjectLayout({ project, next }: { project: Project; next?: Proj
         </div>
       </Block>
 
-      <Block title="What I'd do next">
-        <Bullets items={d.next} />
-      </Block>
+      {d.next.length > 0 && (
+        <Block title="What I'd do next">
+          <Bullets items={d.next} />
+        </Block>
+      )}
 
       <nav className="mt-16 flex items-center justify-between border-t border-white/10 pt-8 text-sm font-semibold">
         <Link href="/#projects" className="group inline-flex items-center gap-2 text-muted hover:text-ink">

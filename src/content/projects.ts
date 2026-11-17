@@ -96,11 +96,14 @@ export const projects: Project[] = [
         "Built the MongoDB backend services and authentication for secure login.",
         "Pitched to 250+ attendees and won 1st Place in the Finance Track.",
       ],
-      problem: ["TODO: who it's for and what pain it solves for founders and investors."],
+      problem: [
+        "Early-stage startups have a hard time getting in front of investors, and everyday micro-investors have no simple way to find pre-seed companies.",
+        "YOLO Fund is a platform where startups showcase their companies and micro-investors discover startups and manage their investments in one place.",
+      ],
       architecture: [
-        { step: "Client", detail: "React frontend for browsing and listing opportunities. (TODO: confirm)" },
-        { step: "API", detail: "Express server exposing marketplace and auth routes." },
-        { step: "Data", detail: "MongoDB collections for users, startups and investments." },
+        { step: "Client", detail: "React frontend where startups create listings and investors browse companies and track their investments." },
+        { step: "API", detail: "Express / Node.js server handling accounts, secure login and account-specific data." },
+        { step: "Data", detail: "MongoDB collections storing and retrieving users, startups and investments." },
       ],
       stack: [
         {
@@ -108,17 +111,30 @@ export const projects: Project[] = [
           items: [
             { name: "MongoDB", why: "Flexible documents for fast iteration during a hackathon." },
             { name: "Express / Node.js", why: "One language across the stack for a 4-person team." },
-            { name: "React", why: "TODO" },
+            { name: "React", why: "Component-based UI the frontend teammates could build in parallel with the backend." },
           ],
         },
       ],
-      challenges: [{ title: "TODO", body: "TODO: the hardest technical problem in the 24 hours and how you solved it." }],
+      challenges: [
+        {
+          title: "Learning MongoDB in 24 hours",
+          body: "I had never used MongoDB before the hackathon. I taught myself collections, documents, CRUD and connecting the database to an Express backend from docs, forums and videos, then built the account and authentication layer on top of it.",
+        },
+        {
+          title: "The frontend wouldn't connect",
+          body: "With a few hours left, the React frontend couldn't talk to the backend. I reached out to another team using a similar stack, got useful advice, and we had it working before the deadline.",
+        },
+        {
+          title: "Learning the domain",
+          body: "None of us started out fluent in startup finance. Picking up terms like equity, pre-seed, due diligence and liquidity was part of the build, so the product made sense to the judges and the users it was for.",
+        },
+      ],
       results: [
         { value: "1st", label: "Finance Track" },
         { value: "24h", label: "build time" },
         { value: "250+", label: "pitch attendees" },
       ],
-      next: ["TODO"],
+      next: [],
     },
   },
   {
@@ -202,7 +218,7 @@ export const projects: Project[] = [
           ],
         },
       ],
-      challenges: [{ title: "TODO", body: "TODO" }],
+      challenges: [],
       results: [{ value: "11", label: "REST endpoints" }],
       next: [
         "Persist to PostgreSQL with Spring Data JPA.",
