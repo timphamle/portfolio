@@ -8,7 +8,7 @@ export const experience: Experience[] = [
     start: "June 2027",
     end: "Aug 2027",
     location: "Boston, MA",
-    url: "https://www.statefarm.com",
+    url: "https://www.draftkings.com",
     bullets: [
       "TBD"
     ],
@@ -34,7 +34,7 @@ export const experience: Experience[] = [
     start: "May 2025",
     end: "Jul 2025",
     location: "Durham, NC",
-    url: "https://bigdata.duke.edu/data",
+    url: "https://www.polarizationlab.com/",
     bullets: [
       "Built a Streamlit web app to visualize public-opinion trends across 5,521 survey respondents.",
       "Performed data preprocessing, quality assessment, and survey-weighted analysis in R and Python.",
