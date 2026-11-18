@@ -14,33 +14,12 @@ My personal portfolio: a single-page, scroll-through site covering my experience
 - Statically generated project deep-dive pages from a shared template
 - Respects `prefers-reduced-motion`, keyboard accessible, mobile responsive
 
-## Editing content
-
-All content lives in `src/content/`. No layout code changes needed:
-
-| File | What it holds |
-|---|---|
-| `profile.ts` | Name, tagline, About paragraphs (`**bold**` = highlighted), socials, resume path |
-| `experience.ts` | Jobs, newest first |
-| `projects.ts` | Featured projects + the deep-dive content for each `/projects/<slug>/` page |
-| `mascot.ts` | The allay's current update (`currentUpdate`) and speech-bubble lines |
-| `education.ts` | Education, coursework, skills, `skillLinks` (connections in the 3D skills graph), and "Beyond the Code" tiles |
-
-Put your resume at `public/resume.pdf` and project screenshots at `public/images/projects/` (then set `image` on the project).
-
 ## Develop
 
 ```bash
 npm install
 npm run dev        # http://localhost:3000
 ```
-
-## Deploy (Cloudflare)
-
-`npm run build` writes the static site to `out/`.
-
-- **Workers (CLI):** `npm run deploy` (uses `wrangler.jsonc`, first run asks you to log in with `npx wrangler login`)
-- **Pages (Git integration):** connect this repo in the Cloudflare dashboard with build command `npm run build` and output directory `out`
 
 ## Project structure
 
